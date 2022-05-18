@@ -4,6 +4,8 @@
  */
 package vista;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -17,14 +19,14 @@ public class MenuPrincipalSistema extends javax.swing.JFrame {
     
     public MenuPrincipalSistema() {
         initComponents();
-        this.setContentPane(fondo);
+        //this.setContentPane(fondo);
         this.setTitle("Menú Sistema Reciclados Mexicanos");
         this.setLocationRelativeTo(null);
     }
     
     public MenuPrincipalSistema(Usuario usuario) {
         initComponents();
-        this.setContentPane(fondo);
+        //this.setContentPane(fondo);
         this.setTitle("Menú Sistema Reciclados Mexicanos");
         this.setLocationRelativeTo(null);
         this.usuario = usuario;
@@ -39,52 +41,100 @@ public class MenuPrincipalSistema extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
+        panContenido = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuSesion = new javax.swing.JMenu();
         itemCerrarSesión = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         itemSalirSistema = new javax.swing.JMenuItem();
         menuCompras = new javax.swing.JMenu();
         itemComprar = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
         itemCorregirCompra = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
         itemEliminarCompra = new javax.swing.JMenuItem();
         menuVentas = new javax.swing.JMenu();
         itemVender = new javax.swing.JMenuItem();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
         itemCorregirVenta = new javax.swing.JMenuItem();
+        jSeparator5 = new javax.swing.JPopupMenu.Separator();
         itemCancelarVenta = new javax.swing.JMenuItem();
         menuMateriales = new javax.swing.JMenu();
         itemAltaMaterial = new javax.swing.JMenuItem();
+        jSeparator6 = new javax.swing.JPopupMenu.Separator();
         itemEditarMaterial = new javax.swing.JMenuItem();
+        jSeparator7 = new javax.swing.JPopupMenu.Separator();
         itemEliminarMaterial = new javax.swing.JMenuItem();
         menuProveedores = new javax.swing.JMenu();
         itemAltaProveedor = new javax.swing.JMenuItem();
+        jSeparator8 = new javax.swing.JPopupMenu.Separator();
         itemEditarProveedor = new javax.swing.JMenuItem();
+        jSeparator9 = new javax.swing.JPopupMenu.Separator();
         itemEliminarProveedor = new javax.swing.JMenuItem();
         menuClientes = new javax.swing.JMenu();
         itemAltaCliente = new javax.swing.JMenuItem();
+        jSeparator10 = new javax.swing.JPopupMenu.Separator();
         itemEditarCliente = new javax.swing.JMenuItem();
+        jSeparator11 = new javax.swing.JPopupMenu.Separator();
         itemEliminarCliente = new javax.swing.JMenuItem();
         menuReportes = new javax.swing.JMenu();
         itemReporteVentas = new javax.swing.JMenuItem();
+        jSeparator12 = new javax.swing.JPopupMenu.Separator();
         itemReporteCompras = new javax.swing.JMenuItem();
+        jSeparator13 = new javax.swing.JPopupMenu.Separator();
         itemReporteMateriales = new javax.swing.JMenuItem();
+        jSeparator14 = new javax.swing.JPopupMenu.Separator();
         itemReporteProveedores = new javax.swing.JMenuItem();
+        jSeparator15 = new javax.swing.JPopupMenu.Separator();
         itemReporteClientes = new javax.swing.JMenuItem();
         menuUsuarios = new javax.swing.JMenu();
         itemAltaUsuario = new javax.swing.JMenuItem();
+        jSeparator16 = new javax.swing.JPopupMenu.Separator();
         itemEditarUsuario = new javax.swing.JMenuItem();
+        jSeparator17 = new javax.swing.JPopupMenu.Separator();
         itemEliminarUsuario = new javax.swing.JMenuItem();
         menuRoles = new javax.swing.JMenu();
         itemAltaRol = new javax.swing.JMenuItem();
+        jSeparator18 = new javax.swing.JPopupMenu.Separator();
         itemEditarRol = new javax.swing.JMenuItem();
+        jSeparator19 = new javax.swing.JPopupMenu.Separator();
         itemEliminarRol = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(89, 126, 170));
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        panContenido.setBackground(new java.awt.Color(8, 83, 148));
+
+        javax.swing.GroupLayout panContenidoLayout = new javax.swing.GroupLayout(panContenido);
+        panContenido.setLayout(panContenidoLayout);
+        panContenidoLayout.setHorizontalGroup(
+            panContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 800, Short.MAX_VALUE)
+        );
+        panContenidoLayout.setVerticalGroup(
+            panContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 573, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 800;
+        gridBagConstraints.ipady = 573;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 0, 13, 0);
+        getContentPane().add(panContenido, gridBagConstraints);
 
         menuSesion.setText("Sesión");
-        menuSesion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        menuSesion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        itemCerrarSesión.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemCerrarSesión.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        itemCerrarSesión.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        itemCerrarSesión.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/sesionc.png"))); // NOI18N
         itemCerrarSesión.setText("Cerrar sesión");
         itemCerrarSesión.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,8 +142,11 @@ public class MenuPrincipalSistema extends javax.swing.JFrame {
             }
         });
         menuSesion.add(itemCerrarSesión);
+        menuSesion.add(jSeparator1);
 
-        itemSalirSistema.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        itemSalirSistema.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        itemSalirSistema.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        itemSalirSistema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/salir.png"))); // NOI18N
         itemSalirSistema.setText("Salir");
         itemSalirSistema.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,161 +158,248 @@ public class MenuPrincipalSistema extends javax.swing.JFrame {
         jMenuBar1.add(menuSesion);
 
         menuCompras.setText("Compras");
-        menuCompras.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        menuCompras.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        itemComprar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemComprar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemComprar.setText("Comprar");
+        itemComprar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemComprarActionPerformed(evt);
+            }
+        });
         menuCompras.add(itemComprar);
+        menuCompras.add(jSeparator2);
 
-        itemCorregirCompra.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemCorregirCompra.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemCorregirCompra.setText("Modificar Compra");
+        itemCorregirCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCorregirCompraActionPerformed(evt);
+            }
+        });
         menuCompras.add(itemCorregirCompra);
+        menuCompras.add(jSeparator3);
 
-        itemEliminarCompra.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemEliminarCompra.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemEliminarCompra.setText("Eliminar Compra");
+        itemEliminarCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemEliminarCompraActionPerformed(evt);
+            }
+        });
         menuCompras.add(itemEliminarCompra);
 
         jMenuBar1.add(menuCompras);
 
         menuVentas.setText("Ventas");
-        menuVentas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        menuVentas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        itemVender.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemVender.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemVender.setText("Vender");
+        itemVender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemVenderActionPerformed(evt);
+            }
+        });
         menuVentas.add(itemVender);
+        menuVentas.add(jSeparator4);
 
-        itemCorregirVenta.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemCorregirVenta.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemCorregirVenta.setText("Modificar Venta");
+        itemCorregirVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCorregirVentaActionPerformed(evt);
+            }
+        });
         menuVentas.add(itemCorregirVenta);
+        menuVentas.add(jSeparator5);
 
-        itemCancelarVenta.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemCancelarVenta.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemCancelarVenta.setText("Cancelar Venta");
+        itemCancelarVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCancelarVentaActionPerformed(evt);
+            }
+        });
         menuVentas.add(itemCancelarVenta);
 
         jMenuBar1.add(menuVentas);
 
         menuMateriales.setText("Materiales");
-        menuMateriales.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        menuMateriales.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        itemAltaMaterial.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemAltaMaterial.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemAltaMaterial.setText("Alta Material");
+        itemAltaMaterial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemAltaMaterialActionPerformed(evt);
+            }
+        });
         menuMateriales.add(itemAltaMaterial);
+        menuMateriales.add(jSeparator6);
 
-        itemEditarMaterial.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemEditarMaterial.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemEditarMaterial.setText("Editar Material");
+        itemEditarMaterial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemEditarMaterialActionPerformed(evt);
+            }
+        });
         menuMateriales.add(itemEditarMaterial);
+        menuMateriales.add(jSeparator7);
 
-        itemEliminarMaterial.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemEliminarMaterial.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemEliminarMaterial.setText("Eliminar Material");
+        itemEliminarMaterial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemEliminarMaterialActionPerformed(evt);
+            }
+        });
         menuMateriales.add(itemEliminarMaterial);
 
         jMenuBar1.add(menuMateriales);
 
         menuProveedores.setText("Proveedores");
-        menuProveedores.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        menuProveedores.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        itemAltaProveedor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemAltaProveedor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemAltaProveedor.setText("Alta proveedor");
+        itemAltaProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemAltaProveedorActionPerformed(evt);
+            }
+        });
         menuProveedores.add(itemAltaProveedor);
+        menuProveedores.add(jSeparator8);
 
-        itemEditarProveedor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemEditarProveedor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemEditarProveedor.setText("Editar proveedor");
+        itemEditarProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemEditarProveedorActionPerformed(evt);
+            }
+        });
         menuProveedores.add(itemEditarProveedor);
+        menuProveedores.add(jSeparator9);
 
-        itemEliminarProveedor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemEliminarProveedor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemEliminarProveedor.setText("Eliminar proveedor");
         menuProveedores.add(itemEliminarProveedor);
 
         jMenuBar1.add(menuProveedores);
 
         menuClientes.setText("Clientes");
-        menuClientes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        menuClientes.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        itemAltaCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemAltaCliente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemAltaCliente.setText("Alta Cliente");
+        itemAltaCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemAltaClienteActionPerformed(evt);
+            }
+        });
         menuClientes.add(itemAltaCliente);
+        menuClientes.add(jSeparator10);
 
-        itemEditarCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemEditarCliente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemEditarCliente.setText("Editar Cliente");
         menuClientes.add(itemEditarCliente);
+        menuClientes.add(jSeparator11);
 
-        itemEliminarCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemEliminarCliente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemEliminarCliente.setText("Eliminar Cliente");
         menuClientes.add(itemEliminarCliente);
 
         jMenuBar1.add(menuClientes);
 
         menuReportes.setText("Reportes");
-        menuReportes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        menuReportes.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        itemReporteVentas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemReporteVentas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemReporteVentas.setText("Reporte de Ventas");
         menuReportes.add(itemReporteVentas);
+        menuReportes.add(jSeparator12);
 
-        itemReporteCompras.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemReporteCompras.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemReporteCompras.setText("Reporte de Compras");
         menuReportes.add(itemReporteCompras);
+        menuReportes.add(jSeparator13);
 
-        itemReporteMateriales.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemReporteMateriales.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemReporteMateriales.setText("Reporte de Materiales");
         menuReportes.add(itemReporteMateriales);
+        menuReportes.add(jSeparator14);
 
-        itemReporteProveedores.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemReporteProveedores.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemReporteProveedores.setText("Reporte de Proveedores");
         menuReportes.add(itemReporteProveedores);
+        menuReportes.add(jSeparator15);
 
-        itemReporteClientes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemReporteClientes.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemReporteClientes.setText("Reporte de Clientes");
         menuReportes.add(itemReporteClientes);
 
         jMenuBar1.add(menuReportes);
 
         menuUsuarios.setText("Usuarios");
-        menuUsuarios.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        menuUsuarios.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        itemAltaUsuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemAltaUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemAltaUsuario.setText("Alta Usuario");
+        itemAltaUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemAltaUsuarioActionPerformed(evt);
+            }
+        });
         menuUsuarios.add(itemAltaUsuario);
+        menuUsuarios.add(jSeparator16);
 
-        itemEditarUsuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemEditarUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemEditarUsuario.setText("Editar Usuario");
         menuUsuarios.add(itemEditarUsuario);
+        menuUsuarios.add(jSeparator17);
 
-        itemEliminarUsuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemEliminarUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemEliminarUsuario.setText("Eliminar Usuario");
         menuUsuarios.add(itemEliminarUsuario);
 
         jMenuBar1.add(menuUsuarios);
 
         menuRoles.setText("Roles");
-        menuRoles.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        menuRoles.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        itemAltaRol.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemAltaRol.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemAltaRol.setText("Alta Rol");
+        itemAltaRol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemAltaRolActionPerformed(evt);
+            }
+        });
         menuRoles.add(itemAltaRol);
+        menuRoles.add(jSeparator18);
 
-        itemEditarRol.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        itemEditarRol.setText("Editar Rol");
+        itemEditarRol.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        itemEditarRol.setText("Modificar Rol");
+        itemEditarRol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemEditarRolActionPerformed(evt);
+            }
+        });
         menuRoles.add(itemEditarRol);
+        menuRoles.add(jSeparator19);
 
-        itemEliminarRol.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        itemEliminarRol.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         itemEliminarRol.setText("Eliminar Rol");
+        itemEliminarRol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemEliminarRolActionPerformed(evt);
+            }
+        });
         menuRoles.add(itemEliminarRol);
 
         jMenuBar1.add(menuRoles);
 
         setJMenuBar(jMenuBar1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 583, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 301, Short.MAX_VALUE)
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -279,6 +419,86 @@ public class MenuPrincipalSistema extends javax.swing.JFrame {
         ventanaValidarUsuario.setVisible(true);
         this.hide();
     }//GEN-LAST:event_itemCerrarSesiónActionPerformed
+
+    private void itemAltaRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAltaRolActionPerformed
+        AltaRol altaRol = new AltaRol();
+        iniciaJPanel(altaRol);
+    }//GEN-LAST:event_itemAltaRolActionPerformed
+
+    private void itemEditarRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEditarRolActionPerformed
+        ModificarRol modificarRol = new ModificarRol();
+        iniciaJPanel(modificarRol);
+    }//GEN-LAST:event_itemEditarRolActionPerformed
+
+    private void itemEliminarRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEliminarRolActionPerformed
+        EliminarRol eliminarRol = new EliminarRol();
+        iniciaJPanel(eliminarRol);
+    }//GEN-LAST:event_itemEliminarRolActionPerformed
+
+    private void itemComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemComprarActionPerformed
+        CompraMateriales compraMateriales = new CompraMateriales();
+        iniciaJPanel(compraMateriales);
+    }//GEN-LAST:event_itemComprarActionPerformed
+
+    private void itemVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemVenderActionPerformed
+        VentaMateriales ventaMateriales = new VentaMateriales();
+        iniciaJPanel(ventaMateriales);
+    }//GEN-LAST:event_itemVenderActionPerformed
+
+    private void itemAltaMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAltaMaterialActionPerformed
+        AltaMaterial altaMaterial = new AltaMaterial();
+        iniciaJPanel(altaMaterial);
+    }//GEN-LAST:event_itemAltaMaterialActionPerformed
+
+    private void itemAltaProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAltaProveedorActionPerformed
+        AltaProveedor altaProveedor = new AltaProveedor();
+        iniciaJPanel(altaProveedor);
+    }//GEN-LAST:event_itemAltaProveedorActionPerformed
+
+    private void itemAltaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAltaClienteActionPerformed
+        AltaCliente altaCliente = new AltaCliente();
+        iniciaJPanel(altaCliente);
+    }//GEN-LAST:event_itemAltaClienteActionPerformed
+
+    private void itemAltaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAltaUsuarioActionPerformed
+        AltaUsuario altaUsuario = new AltaUsuario();
+        iniciaJPanel(altaUsuario);
+    }//GEN-LAST:event_itemAltaUsuarioActionPerformed
+
+    private void itemCorregirCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCorregirCompraActionPerformed
+        ModificarCompraMateriales compraMateriales = new ModificarCompraMateriales();
+        iniciaJPanel(compraMateriales);
+    }//GEN-LAST:event_itemCorregirCompraActionPerformed
+
+    private void itemEliminarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEliminarCompraActionPerformed
+        EliminarCompra eliminarCompra = new EliminarCompra();
+        iniciaJPanel(eliminarCompra);
+    }//GEN-LAST:event_itemEliminarCompraActionPerformed
+
+    private void itemCorregirVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCorregirVentaActionPerformed
+        ModificarVentaMateriales modificarVenta = new ModificarVentaMateriales();
+        iniciaJPanel(modificarVenta);
+    }//GEN-LAST:event_itemCorregirVentaActionPerformed
+
+    private void itemCancelarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCancelarVentaActionPerformed
+        EliminarVenta eliminarVenta = new EliminarVenta();
+        iniciaJPanel(eliminarVenta);
+    }//GEN-LAST:event_itemCancelarVentaActionPerformed
+
+    private void itemEditarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEditarMaterialActionPerformed
+        ModificarMaterial modificarMaterial = new ModificarMaterial();
+        iniciaJPanel(modificarMaterial);
+    }//GEN-LAST:event_itemEditarMaterialActionPerformed
+
+    private void itemEliminarMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEliminarMaterialActionPerformed
+        EliminarMaterial eliminarMaterial = new EliminarMaterial();
+        iniciaJPanel(eliminarMaterial);
+    }//GEN-LAST:event_itemEliminarMaterialActionPerformed
+
+    private void itemEditarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEditarProveedorActionPerformed
+        ModificarProveedor modificarProveedor = new ModificarProveedor();
+        iniciaJPanel(modificarProveedor);
+    }//GEN-LAST:event_itemEditarProveedorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -314,6 +534,16 @@ public class MenuPrincipalSistema extends javax.swing.JFrame {
                 new MenuPrincipalSistema().setVisible(true);
             }
         });
+    }
+    
+    private void iniciaJPanel(JPanel jPanel) {
+        jPanel.setSize(800, 577);
+        jPanel.setLocation(0, 0);
+        
+        panContenido.removeAll();
+        panContenido.add(jPanel, BorderLayout.CENTER);
+        panContenido.revalidate();
+        panContenido.repaint();
     }
     
     private void setPrivilegios () {
@@ -365,6 +595,25 @@ public class MenuPrincipalSistema extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemSalirSistema;
     private javax.swing.JMenuItem itemVender;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator10;
+    private javax.swing.JPopupMenu.Separator jSeparator11;
+    private javax.swing.JPopupMenu.Separator jSeparator12;
+    private javax.swing.JPopupMenu.Separator jSeparator13;
+    private javax.swing.JPopupMenu.Separator jSeparator14;
+    private javax.swing.JPopupMenu.Separator jSeparator15;
+    private javax.swing.JPopupMenu.Separator jSeparator16;
+    private javax.swing.JPopupMenu.Separator jSeparator17;
+    private javax.swing.JPopupMenu.Separator jSeparator18;
+    private javax.swing.JPopupMenu.Separator jSeparator19;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JPopupMenu.Separator jSeparator5;
+    private javax.swing.JPopupMenu.Separator jSeparator6;
+    private javax.swing.JPopupMenu.Separator jSeparator7;
+    private javax.swing.JPopupMenu.Separator jSeparator8;
+    private javax.swing.JPopupMenu.Separator jSeparator9;
     private javax.swing.JMenu menuClientes;
     private javax.swing.JMenu menuCompras;
     private javax.swing.JMenu menuMateriales;
@@ -374,5 +623,6 @@ public class MenuPrincipalSistema extends javax.swing.JFrame {
     private javax.swing.JMenu menuSesion;
     private javax.swing.JMenu menuUsuarios;
     private javax.swing.JMenu menuVentas;
+    private javax.swing.JPanel panContenido;
     // End of variables declaration//GEN-END:variables
 }
