@@ -1,15 +1,17 @@
 package modelo;
 
 public class Transaccion {
-    int idTransaccion;
-    String fecha;
+    private int idTransaccion;
+    private int idUsuario;
+    private String fecha;
 
-    public Transaccion() {
+    public Transaccion(int idTransaccion, int idUsuario, String fecha) {
+        this.idTransaccion = idTransaccion;
+        this.idUsuario = idUsuario;
+        this.fecha = fecha;
     }
 
-    public Transaccion(int idTransaccion, String fecha) {
-        this.idTransaccion = idTransaccion;
-        this.fecha = fecha;
+    public Transaccion() {
     }
 
     public int getIdTransaccion() {
@@ -20,6 +22,14 @@ public class Transaccion {
         this.idTransaccion = idTransaccion;
     }
 
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
     public String getFecha() {
         return fecha;
     }
@@ -27,4 +37,5 @@ public class Transaccion {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
+
 }

@@ -9,7 +9,7 @@ public class Rol {
     public Rol() {
     }
 
-    public Rol(int idRol, String nombre, String descripción, byte estado) {
+    public Rol(int idRol, String nombre, String descripcion, byte estado) {
         this.idRol = idRol;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -48,4 +48,11 @@ public class Rol {
         this.estado = estado;
     }
     
+    public void habilitar(){
+        this.estado = ((byte)1);
+    }
+    
+    public void deshabilitar() {
+        this.estado = ((byte)0);
+    }
 }

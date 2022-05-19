@@ -1,20 +1,18 @@
 package modelo;
 
 public class Material {
-    int idProducto;
-    String tipo;
-    double precioCompra;
-    double precioVenta;
-    double existencia;
-    byte estado;
-    
-     public Material() {
+    private int idMaterial;
+    private String tipo;
+    private double precioCompra;
+    private double precioVenta;
+    private double existencia;
+    private byte estado;
+
+    public Material() {
     }
 
-    public Material(int idProducto, String tipo, 
-            double precioCompra, double precioVenta, 
-            double existencia, byte estado) {
-        this.idProducto = idProducto;
+    public Material(int idMaterial, String tipo, double precioCompra, double precioVenta, double existencia, byte estado) {
+        this.idMaterial = idMaterial;
         this.tipo = tipo;
         this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
@@ -22,12 +20,12 @@ public class Material {
         this.estado = estado;
     }
 
-    public int getIdProducto() {
-        return idProducto;
+    public int getIdMaterial() {
+        return idMaterial;
     }
 
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
+    public void setidMaterial(int idMaterial) {
+        this.idMaterial = idMaterial;
     }
 
     public String getTipo() {
@@ -69,4 +67,13 @@ public class Material {
     public void setEstado(byte estado) {
         this.estado = estado;
     }
+    
+    public void habilitar(){
+        this.estado = ((byte)1);
+    }
+    
+    public void deshabilitar() {
+        this.estado = ((byte)0);
+    }
+
 }

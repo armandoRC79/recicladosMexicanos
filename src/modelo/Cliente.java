@@ -11,8 +11,7 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(int idCliente, String razonSocial, String RFC, 
-            String telefono, String correo, byte estado) {
+    public Cliente(int idCliente, String razonSocial, String RFC, String telefono, String correo, byte estado) {
         this.idCliente = idCliente;
         this.razonSocial = razonSocial;
         this.RFC = RFC;
@@ -68,4 +67,5 @@ public class Cliente {
     public void setEstado(byte estado) {
         this.estado = estado;
     }
+
 }

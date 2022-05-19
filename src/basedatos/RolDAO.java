@@ -59,14 +59,14 @@ public class RolDAO {
                 JOptionPane.showMessageDialog(null, "Error al registar rol" + ex);
             }
         }else{
-            rolAux.setEstado((byte)1);
+            rolAux.habilitar();
             actualizar(rolAux);
             bandera = true;
         }
         return bandera;
     }
     
-    public Rol consultaRol(Rol rol) {
+    private Rol consultaRol(Rol rol) {
         Rol rolRetorno = null;
         String sql = "SELECT * FROM roles WHERE nombre = '" + rol.getNombre()+"'";
         
@@ -107,17 +107,35 @@ public class RolDAO {
         return bandera;
     }
     
+    public boolean eliminar(Rol rol) {
+        boolean bandera = false;
+        String sql = "UPDATE roles SET "
+                + "nombre = '" + rol.getNombre()
+                + "', descripcion = '" + rol.getDescripcion()
+                + "', estado = '" + rol.getEstado()
+                + "' WHERE idrol = '" + rol.getIdRol() +"'";
+        if(conexionExitosa == false)
+            conectarBase();
+
+        try {
+            stmt.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Rol eliminado");
+            bandera = true;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error BD 2: " + ex);
+        }
+        return bandera;
+    }
+    
     public static void main(String[] args) {
         Rol rol = new Rol();
         RolDAO rolDAO = new RolDAO();
         rol.setDescripcion("Lo ve todo");
-        rol.setEstado((byte)1);
         rol.setNombre("SuperUsuario");
-        rol.setIdRol(1);
+        rol.habilitar();
         
         //System.out.println(rolDAO.consultaRol(rol).getDescripcion());
         //rolDAO.actualizar(rol);
         //rolDAO.altaRol(rol);
-        
     }
 }

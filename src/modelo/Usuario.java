@@ -5,15 +5,17 @@ public class Usuario {
     int idRol;
     String nombreUsuario;
     String claveIngreso;
+    boolean estado;
 
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, int idRol, String nombreUsuario, String claveIngreso) {
+    public Usuario(int idUsuario, int idRol, String nombreUsuario, String claveIngreso, boolean estado) {
         this.idUsuario = idUsuario;
         this.idRol = idRol;
         this.nombreUsuario = nombreUsuario;
         this.claveIngreso = claveIngreso;
+        this.estado = estado;
     }
 
     public int getIdUsuario() {
@@ -47,4 +49,13 @@ public class Usuario {
     public void setClaveIngreso(String claveIngreso) {
         this.claveIngreso = claveIngreso;
     }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+    
 }

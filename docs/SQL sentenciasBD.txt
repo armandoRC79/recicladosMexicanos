@@ -1,0 +1,131 @@
+CREATE TABLE `formasCobro` (
+`idCobro` int(11) NOT NULL,
+`numeroCuenta` varchar(100),
+`numeroTarjeta` varchar(100),
+`clabe` varchar(100),
+`efectivo` boolean,
+PRIMARY KEY (`idCobro`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `formasPago` (
+`idPago` int(11) NOT NULL,
+`numeroCuenta` varchar(100),
+`numeroTarjeta` varchar(100),
+`clabe` varchar(100),
+`efectivo` boolean,
+PRIMARY KEY (`idPago`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `proveedores` (
+`idProveedor` int(11) NOT NULL,
+`idCobro` int(11) NOT NULL,
+`razonSocial` varchar(100) NOT NULL,
+`RFC` varchar(100),
+`telefono` varchar(100),
+`direccion` varchar(100),
+`correo` varchar(100),
+`estado` boolean NOT NULL,
+PRIMARY KEY (`idProveedor`),
+KEY `FK_DetalleCobro_Proveedor` (`idCobro`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `clientes` (
+`idCliente` int(11) NOT NULL,
+`idPago` int(11) NOT NULL,
+`razonSocial` varchar(100) NOT NULL,
+`RFC` varchar(100),
+`telefono` varchar(100),
+`direccion` varchar(100),
+`correo` varchar(100),
+`estado` boolean NOT NULL,
+PRIMARY KEY (`idCliente`),
+KEY `FK_DetallePago_Cliente` (`idPago`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `roles` (
+`idRol` int(11) NOT NULL,
+`nombre` varchar(100) NOT NULL,
+`descripcion` varchar(255) NOT NULL,
+`estado` boolean NOT NULL,
+PRIMARY KEY (`idRol`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `usuarios` (
+`idUsuario` int(11) NOT NULL,
+`idRol` int(11) NOT NULL,
+`nombreUsuario` varchar(100) NOT NULL,
+`claveIngreso` varchar(100) NOT NULL,
+`estado` boolean NOT NULL,
+PRIMARY KEY (`idUsuario`),
+KEY `FK_DetalleRol_Usuario` (`idRol`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+CREATE TABLE `materiales` (
+`idmaterial` int(11) NOT NULL,
+`tipo` varchar(100) NOT NULL,
+`precioCompra` decimal(18,2) NOT NULL,
+`precioVenta` decimal(18,2) NOT NULL,
+`existencia` decimal(65,2) NOT NULL,
+`estado` boolean NOT NULL,
+PRIMARY KEY (`idMaterial`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `ventas` (
+`idVenta` int(11) NOT NULL,
+`idCliente` int(11) NOT NULL,
+`idUsuario` int(11) NOT NULL,
+`fecha` datetime NOT NULL,
+PRIMARY KEY (`idVenta`),
+KEY `FK_DetalleVenta_Cliente` (`idCliente`),
+KEY `FK_DetalleVenta_Usuario` (`idUsuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `compras` (
+`idCompra` int(11) NOT NULL,
+`idProveedor` int(11) NOT NULL,
+`idUsuario` int(11) NOT NULL,
+`fecha` datetime NOT NULL,
+PRIMARY KEY (`idCompra`),
+KEY `FK_DetalleCompra_Proveedor` (`idProveedor`),
+KEY `FK_DetalleCompra_Usuario` (`idUsuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+CREATE TABLE `detalleventas` (
+`idVenta` int(11) NOT NULL,
+`idMaterial` int(11) NOT NULL,
+`pesoBruto` decimal(18,2) NOT NULL,
+`pesoTara` decimal(18,2) NOT NULL,
+`subPeso` decimal(18,2) NOT NULL,
+`pesoDescuento` decimal(18,2) NOT NULL,
+`pesoNeto` decimal(18,2) NOT NULL,
+`cobro` decimal(18,2) NOT NULL,
+PRIMARY KEY (`idVenta`,`idMaterial`),
+KEY `FK_DetalleVenta_Material` (`idMaterial`),
+CONSTRAINT `FK_DetalleVenta_Material` FOREIGN KEY (`idMaterial`) REFERENCES `materiales` (`idMaterial`),
+CONSTRAINT `FK_DetalleVenta_Venta` FOREIGN KEY (`idVenta`) REFERENCES `ventas` (`idVenta`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+CREATE TABLE `detallecompra` (
+`idCompra` int(11) NOT NULL,
+`idMaterial` int(11) NOT NULL,
+`pesoBruto` decimal(18,2) NOT NULL,
+`pesoTara` decimal(18,2) NOT NULL,
+`subPeso` decimal(18,2) NOT NULL,
+`pesoDescuento` decimal(18,2) NOT NULL,
+`pesoNeto` decimal(18,2) NOT NULL,
+`pago` decimal(18,2) NOT NULL,
+PRIMARY KEY (`idCompra`,`idMaterial`),
+KEY `FK_DetalleCompra_Material` (`idMaterial`),
+CONSTRAINT `FK_DetalleCompra_Material` FOREIGN KEY (`idMaterial`) REFERENCES `materiales` (`idMaterial`),
+CONSTRAINT `FK_DetalleCompra_Compra` FOREIGN KEY (`idCompra`) REFERENCES `compras` (`idCompra`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+

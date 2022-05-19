@@ -1,7 +1,6 @@
 package vista;
 
 import controlador.GestionRol;
-import java.awt.Color;
 import modelo.Rol;
 
 public class AltaRol extends javax.swing.JPanel {
@@ -121,7 +120,7 @@ public class AltaRol extends javax.swing.JPanel {
         Rol rol = new Rol();
         rol.setNombre(txtNombreRolAlta.getText());
         rol.setDescripcion(txtaDescripcionRolAlta.getText());
-        rol.setEstado((byte)1);
+        rol.habilitar();
         //Byte.toUnsignedInt(b); regresar a entero
         gestionRol.registrarRol(rol);
     }//GEN-LAST:event_btnRegistrarRolAltaActionPerformed
