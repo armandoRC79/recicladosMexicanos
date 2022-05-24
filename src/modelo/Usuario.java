@@ -1,16 +1,16 @@
 package modelo;
 
 public class Usuario {
-    int idUsuario;
-    int idRol;
-    String nombreUsuario;
-    String claveIngreso;
-    boolean estado;
+    private int idUsuario;
+    private int idRol;
+    private String nombreUsuario;
+    private String claveIngreso;
+    private byte estado;
 
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, int idRol, String nombreUsuario, String claveIngreso, boolean estado) {
+    public Usuario(int idUsuario, int idRol, String nombreUsuario, String claveIngreso, byte estado) {
         this.idUsuario = idUsuario;
         this.idRol = idRol;
         this.nombreUsuario = nombreUsuario;
@@ -50,12 +50,20 @@ public class Usuario {
         this.claveIngreso = claveIngreso;
     }
 
-    public boolean isEstado() {
+    public byte getEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(byte estado) {
         this.estado = estado;
+    }
+    
+    public void habilitar(){
+        this.estado = ((byte)1);
+    }
+    
+    public void deshabilitar() {
+        this.estado = ((byte)0);
     }
     
 }

@@ -4,17 +4,32 @@
  */
 package vista;
 
-import java.awt.Color;
+import controlador.GestionRol;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import modelo.Rol;
 
 /**
  *
  * @author hp
  */
 public class EliminarRol extends javax.swing.JPanel {
-    FondoPanel fondo = new FondoPanel();
+    private FondoPanel fondo = new FondoPanel();
+    private GestionRol gestionRol = new GestionRol();
+    private List<Rol> lista;
+    private Rol rol;
     
     public EliminarRol() {
         initComponents();
+        this.rol = new Rol();
+        idRoles();
+    }
+    
+    private void idRoles() {
+        this.lista = gestionRol.lista();
+        this.lista.stream().forEach(rol 
+                -> cbxNombreRolEliminar.addItem(rol.getNombre()));
     }
 
     /**
@@ -53,10 +68,31 @@ public class EliminarRol extends javax.swing.JPanel {
         txtaDescripcionRolEliminar.setRows(5);
         jScrollPane1.setViewportView(txtaDescripcionRolEliminar);
 
-        btnAceptarRolEliminar.setBackground(new java.awt.Color(102, 102, 102));
-        btnAceptarRolEliminar.setText("Aceptar");
+        btnAceptarRolEliminar.setBackground(new java.awt.Color(255, 204, 204));
+        btnAceptarRolEliminar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnAceptarRolEliminar.setText("Eliminar");
+        btnAceptarRolEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarRolEliminarActionPerformed(evt);
+            }
+        });
 
-        cbxNombreRolEliminar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxNombreRolEliminar.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxNombreRolEliminarItemStateChanged(evt);
+            }
+        });
+        cbxNombreRolEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbxNombreRolEliminarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cbxNombreRolEliminarMouseEntered(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                cbxNombreRolEliminarMousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panDatosRolEliminarLayout = new javax.swing.GroupLayout(panDatosRolEliminar);
         panDatosRolEliminar.setLayout(panDatosRolEliminarLayout);
@@ -71,8 +107,8 @@ public class EliminarRol extends javax.swing.JPanel {
                             .addComponent(lblDescripcionRolModificar))
                         .addGap(41, 41, 41)
                         .addGroup(panDatosRolEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1)
-                            .addComponent(cbxNombreRolEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+                            .addComponent(cbxNombreRolEliminar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(panDatosRolEliminarLayout.createSequentialGroup()
                         .addGap(249, 249, 249)
                         .addComponent(btnAceptarRolEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -116,9 +152,36 @@ public class EliminarRol extends javax.swing.JPanel {
                 .addComponent(lblTituloRolEliminar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panDatosRolEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAceptarRolEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRolEliminarActionPerformed
+        int i = cbxNombreRolEliminar.getSelectedIndex();
+        if (gestionRol.eliminar(lista.get(i)) == true){
+           //Método que actualice la vista 
+           cbxNombreRolEliminar.remove(i);
+        }else{
+            JOptionPane.showMessageDialog(null, "No fue posible eliminar el Rol");
+        }
+    }//GEN-LAST:event_btnAceptarRolEliminarActionPerformed
+
+    private void cbxNombreRolEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbxNombreRolEliminarMouseClicked
+
+    }//GEN-LAST:event_cbxNombreRolEliminarMouseClicked
+
+    private void cbxNombreRolEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbxNombreRolEliminarMouseEntered
+
+    }//GEN-LAST:event_cbxNombreRolEliminarMouseEntered
+
+    private void cbxNombreRolEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbxNombreRolEliminarMousePressed
+
+    }//GEN-LAST:event_cbxNombreRolEliminarMousePressed
+
+    private void cbxNombreRolEliminarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxNombreRolEliminarItemStateChanged
+        int i = cbxNombreRolEliminar.getSelectedIndex();
+        txtaDescripcionRolEliminar.setText(lista.get(i).getDescripcion());
+    }//GEN-LAST:event_cbxNombreRolEliminarItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

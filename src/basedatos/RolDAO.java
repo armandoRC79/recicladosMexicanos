@@ -4,7 +4,11 @@ import java.sql.Connection;//Conecta con la base de datos
 import java.sql.Statement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import modelo.Rol;
 
 public class RolDAO {
@@ -41,11 +45,9 @@ public class RolDAO {
     
     public boolean altaRol(Rol rol) {
         boolean bandera = false;
-       /* JOptionPane.showMessageDialog(null, rol.getNombre()
-                + "\n" + rol.getDescripcion()
-                + "\n" + rol.getEstado());*/
+
         Rol rolAux = consultaRol(rol);
-        if (rolAux == null){
+        if (rolAux == null && rol != null){
             String sql = "INSERT INTO roles(nombre, descripcion, estado)"
                 + "VALUES ('" + rol.getNombre() 
                     + "', '" + rol.getDescripcion() 
@@ -54,13 +56,15 @@ public class RolDAO {
             try {
                 stmt.executeUpdate(sql);
                 bandera = true;
-                JOptionPane.showMessageDialog(null, "Rol registrado con éxito");
+                //JOptionPane.showMessageDialog(null, "Rol registrado con éxito");
+                //System.out.println("Error de BD en MRol consulta: " + ex);
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error al registar rol" + ex);
+                //JOptionPane.showMessageDialog(null, "Error al registar rol" + ex);
+                System.out.println("Error de BD en MRol alta: " + ex);
             }
         }else{
-            rolAux.habilitar();
-            actualizar(rolAux);
+            rol.setIdRol(rolAux.getIdRol());
+            actualizar(rol);
             bandera = true;
         }
         return bandera;
@@ -82,7 +86,8 @@ public class RolDAO {
                 rolRetorno.setEstado(rs.getByte("estado"));
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error de consulta DB: " + ex);
+            //JOptionPane.showMessageDialog(null, "Error de consulta DB: " + ex);
+            System.out.println("Error de BD en MRol consulta: " + ex);
         }
          return rolRetorno;
     }
@@ -93,16 +98,16 @@ public class RolDAO {
                 + "nombre = '" + rol.getNombre()
                 + "', descripcion = '" + rol.getDescripcion()
                 + "', estado = '" + rol.getEstado()
-                + "' WHERE idrol = '" + rol.getIdRol() +"'";
+                + "' WHERE idRol = '" + rol.getIdRol() +"'";
         if(conexionExitosa == false)
             conectarBase();
 
         try {
             stmt.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null, "Rol actualizado");
+            //JOptionPane.showMessageDialog(null, "Rol actualizado");
             bandera = true;
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error BD 2: " + ex);
+            System.out.println("Error de BD en MRol actualizar: " + ex);
         }
         return bandera;
     }
@@ -119,23 +124,45 @@ public class RolDAO {
 
         try {
             stmt.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null, "Rol eliminado");
+            //JOptionPane.showMessageDialog(null, "Rol eliminado");
             bandera = true;
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error BD 2: " + ex);
+           // JOptionPane.showMessageDialog(null, "Error BD 2: " + ex);
+            System.out.println("Error de BD en MRol eliminar: " + ex);
         }
         return bandera;
+    }
+    
+    public List<Rol> listaRoles() {
+        List<Rol> lista= new ArrayList<>();
+        conectarBase();
+        try {
+            Rol rol = new Rol();
+            rs = stmt.executeQuery("SELECT * FROM `roles` WHERE estado = 1");
+            while (rs.next()){
+		rol = new Rol();
+		rol.setIdRol(rs.getInt("idRol"));
+		rol.setNombre(rs.getString("nombre"));
+                rol.setDescripcion(rs.getString("descripcion"));
+                
+		lista.add(rol);
+            }
+        } catch (SQLException ex) {
+            //JOptionPane.showMessageDialog(null, "Error BD 3: " + ex);
+            System.out.println("Error de BD en MRol lista: " + ex);
+        }
+        return lista;
     }
     
     public static void main(String[] args) {
         Rol rol = new Rol();
         RolDAO rolDAO = new RolDAO();
-        rol.setDescripcion("Lo ve todo");
+        rol.setIdRol(1);
+        rol.setDescripcion("Lo nada todo");
         rol.setNombre("SuperUsuario");
-        rol.habilitar();
-        
-        //System.out.println(rolDAO.consultaRol(rol).getDescripcion());
+        rol.deshabilitar();
+        //System.out.println(rol.getEstado());
         //rolDAO.actualizar(rol);
-        //rolDAO.altaRol(rol);
+        rolDAO.altaRol(rol);
     }
 }

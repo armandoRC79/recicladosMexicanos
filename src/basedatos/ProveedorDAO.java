@@ -43,6 +43,7 @@ public class ProveedorDAO {
         boolean bandera = false;
         Proveedor proveedorAux = consultaProveedor(proveedor);
         if (proveedorAux == null){
+            proveedor.habilitar();
             String sql = "INSERT INTO proveedores(idCobro, razonSocial,"
                     + "RFC, telefono, direccion, correo, estado)"
                     + "VALUES ('" + proveedor.getIdCobro()
@@ -61,8 +62,8 @@ public class ProveedorDAO {
                 JOptionPane.showMessageDialog(null, "Error MPBD 2" + ex);
             }
         }else{
-            proveedorAux.setEstado((byte)1);
-            actualizar(proveedorAux);
+            proveedor.setIdProveedor(proveedorAux.getIdProveedor());
+            actualizar(proveedor);
             bandera = true;
         }
         return bandera;

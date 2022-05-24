@@ -4,7 +4,11 @@
  */
 package vista;
 
+import controlador.GestionRol;
 import java.awt.Color;
+import java.util.List;
+import javax.swing.JOptionPane;
+import modelo.Rol;
 
 /**
  *
@@ -12,9 +16,20 @@ import java.awt.Color;
  */
 public class ModificarRol extends javax.swing.JPanel {
     FondoPanel fondo = new FondoPanel();
+    private GestionRol gestionRol = new GestionRol();
+    private List<Rol> lista;
+    private Rol rol;
     
     public ModificarRol() {
         initComponents();
+        this.rol = new Rol();
+        idRoles();
+    }
+    
+     private void idRoles() {
+        this.lista = gestionRol.lista();
+        this.lista.stream().forEach(rol 
+                -> cbxNombreRolModificar.addItem(rol.getNombre()));
     }
 
     /**
@@ -31,7 +46,7 @@ public class ModificarRol extends javax.swing.JPanel {
         lblDescripcionRolModificar = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtaDescripcionRolModificar = new javax.swing.JTextArea();
-        btnRegistrarRolModificar = new javax.swing.JButton();
+        btnActualizarRolModificar = new javax.swing.JButton();
         cbxNombreRolModificar = new javax.swing.JComboBox<>();
         lblTituloRolModificar = new javax.swing.JLabel();
 
@@ -53,10 +68,19 @@ public class ModificarRol extends javax.swing.JPanel {
         txtaDescripcionRolModificar.setRows(5);
         jScrollPane1.setViewportView(txtaDescripcionRolModificar);
 
-        btnRegistrarRolModificar.setBackground(new java.awt.Color(102, 102, 102));
-        btnRegistrarRolModificar.setText("Actualizar Rol");
+        btnActualizarRolModificar.setBackground(new java.awt.Color(102, 102, 102));
+        btnActualizarRolModificar.setText("Actualizar Rol");
+        btnActualizarRolModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarRolModificarActionPerformed(evt);
+            }
+        });
 
-        cbxNombreRolModificar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxNombreRolModificar.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxNombreRolModificarItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout panDatosRolModificarLayout = new javax.swing.GroupLayout(panDatosRolModificar);
         panDatosRolModificar.setLayout(panDatosRolModificarLayout);
@@ -74,7 +98,7 @@ public class ModificarRol extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panDatosRolModificarLayout.createSequentialGroup()
                 .addContainerGap(279, Short.MAX_VALUE)
-                .addComponent(btnRegistrarRolModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnActualizarRolModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(238, 238, 238))
         );
         panDatosRolModificarLayout.setVerticalGroup(
@@ -89,7 +113,7 @@ public class ModificarRol extends javax.swing.JPanel {
                     .addComponent(lblDescripcionRolModificar)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
-                .addComponent(btnRegistrarRolModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnActualizarRolModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -115,13 +139,34 @@ public class ModificarRol extends javax.swing.JPanel {
                 .addComponent(lblTituloRolModificar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panDatosRolModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cbxNombreRolModificarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxNombreRolModificarItemStateChanged
+        int i = cbxNombreRolModificar.getSelectedIndex();
+        txtaDescripcionRolModificar.setText(lista.get(i).getDescripcion());
+    }//GEN-LAST:event_cbxNombreRolModificarItemStateChanged
+
+    private void btnActualizarRolModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarRolModificarActionPerformed
+        GestionRol gestionRol = new GestionRol();
+        Rol rol = new Rol();
+        int i = cbxNombreRolModificar.getSelectedIndex();
+        
+        rol.setNombre(lista.get(i).getNombre());
+        rol.setDescripcion(txtaDescripcionRolModificar.getText());
+        //Byte.toUnsignedInt(b); regresar a entero
+        if(gestionRol.alta(rol) == true){
+            JOptionPane.showMessageDialog(null, "El Rol " + rol.getNombre()
+                    + "se actualizo correctamente");
+        }else{
+            JOptionPane.showMessageDialog(null, "Rol no actualizado");
+        }
+    }//GEN-LAST:event_btnActualizarRolModificarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRegistrarRolModificar;
+    private javax.swing.JButton btnActualizarRolModificar;
     private javax.swing.JComboBox<String> cbxNombreRolModificar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDescripcionRolModificar;

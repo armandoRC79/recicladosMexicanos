@@ -1,10 +1,12 @@
 package vista;
 
 import controlador.GestionRol;
+import javax.swing.JOptionPane;
 import modelo.Rol;
 
 public class AltaRol extends javax.swing.JPanel {
     FondoPanel fondo = new FondoPanel();
+    GestionRol gestionRol = new GestionRol();
     
     public AltaRol() {
         initComponents();
@@ -86,7 +88,7 @@ public class AltaRol extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(btnRegistrarRolAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         lblTituloRolAlta.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -111,7 +113,7 @@ public class AltaRol extends javax.swing.JPanel {
                 .addComponent(lblTituloRolAlta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panDatosRolAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -120,9 +122,15 @@ public class AltaRol extends javax.swing.JPanel {
         Rol rol = new Rol();
         rol.setNombre(txtNombreRolAlta.getText());
         rol.setDescripcion(txtaDescripcionRolAlta.getText());
-        rol.habilitar();
         //Byte.toUnsignedInt(b); regresar a entero
-        gestionRol.registrarRol(rol);
+        if(gestionRol.alta(rol) == true){
+            JOptionPane.showMessageDialog(null, "El Rol " + rol.getNombre()
+                    + "fue registrado");
+            txtNombreRolAlta.setText("");
+            txtaDescripcionRolAlta.setText("");
+        }else{
+            JOptionPane.showMessageDialog(null, "Rol no registrado");
+        }
     }//GEN-LAST:event_btnRegistrarRolAltaActionPerformed
 
 

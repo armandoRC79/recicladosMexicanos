@@ -43,6 +43,7 @@ public class MaterialDAO {
         boolean bandera = false;
         Material materialAux = consultaMaterial(material);
         if (materialAux == null){
+            material.habilitar();
             String sql = "INSERT INTO materiales(idMaterial, tipo, precioCompra,"
                     + "precioVenta, existencia, estado)"
                     + "VALUES ('" + material.getIdMaterial()
@@ -60,8 +61,8 @@ public class MaterialDAO {
                 JOptionPane.showMessageDialog(null, "Error BD 2" + ex);
             }
         }else{
-            materialAux.habilitar();
-            actualizar(materialAux);
+            material.setidMaterial(materialAux.getIdMaterial());
+            actualizar(material);
             bandera = true;
         }
         return bandera;

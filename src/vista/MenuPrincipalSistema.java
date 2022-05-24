@@ -355,7 +355,12 @@ public class MenuPrincipalSistema extends javax.swing.JFrame {
         menuUsuarios.add(jSeparator16);
 
         itemEditarUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        itemEditarUsuario.setText("Editar Usuario");
+        itemEditarUsuario.setText("Modificar Usuario");
+        itemEditarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemEditarUsuarioActionPerformed(evt);
+            }
+        });
         menuUsuarios.add(itemEditarUsuario);
         menuUsuarios.add(jSeparator17);
 
@@ -499,6 +504,10 @@ public class MenuPrincipalSistema extends javax.swing.JFrame {
         ModificarProveedor modificarProveedor = new ModificarProveedor();
         iniciaJPanel(modificarProveedor);
     }//GEN-LAST:event_itemEditarProveedorActionPerformed
+
+    private void itemEditarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEditarUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemEditarUsuarioActionPerformed
 
     /**
      * @param args the command line arguments

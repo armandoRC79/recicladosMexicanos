@@ -1,14 +1,28 @@
 package vista;
 
 import controlador.GestionRol;
+import controlador.GestionUsuario;
 import java.awt.Color;
+import java.util.List;
 import modelo.Rol;
 
 public class AltaUsuario extends javax.swing.JPanel {
     FondoPanel fondo = new FondoPanel();
+    GestionUsuario gestionUsuario = new GestionUsuario();
+    private GestionRol gestionRol = new GestionRol();
+    private List<Rol> lista;
+    private Rol rol;
     
     public AltaUsuario() {
         initComponents();
+        this.rol = new Rol();
+        idRoles();
+    }
+    
+    private void idRoles() {
+        this.lista = gestionRol.lista();
+        this.lista.stream().forEach(rol 
+                -> cbxRolUsuarioAlta.addItem(rol.getNombre()));
     }
 
     /**
@@ -61,8 +75,6 @@ public class AltaUsuario extends javax.swing.JPanel {
         lblConfirmaClaveAccesoUsuarioAlta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblConfirmaClaveAccesoUsuarioAlta.setForeground(new java.awt.Color(255, 255, 255));
         lblConfirmaClaveAccesoUsuarioAlta.setText("Confirme contraseña");
-
-        cbxRolUsuarioAlta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         txtClaveAccesoUsuarioAlta.setText("jPasswordField1");
 
@@ -145,7 +157,7 @@ public class AltaUsuario extends javax.swing.JPanel {
                 .addComponent(lblTituloUsuarioAlta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panDatosUsuarioAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
