@@ -5,8 +5,7 @@ import javax.swing.JOptionPane;
 import modelo.Rol;
 
 public class AltaRol extends javax.swing.JPanel {
-    FondoPanel fondo = new FondoPanel();
-    GestionRol gestionRol = new GestionRol();
+    private FondoPanel fondo = new FondoPanel();
     
     public AltaRol() {
         initComponents();

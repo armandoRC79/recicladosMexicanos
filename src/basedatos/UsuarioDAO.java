@@ -4,6 +4,8 @@ import java.sql.Connection;//Conecta con la base de datos
 import java.sql.Statement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 
@@ -39,10 +41,10 @@ public class UsuarioDAO {
         }
     }
     
-    public boolean altausuario(Usuario usuario){
+    public boolean altaUsuario(Usuario usuario){
         boolean bandera = false;
         
-        Usuario usuarioAux = consultausuario(usuario);
+        Usuario usuarioAux = consultaUsuario(usuario);
         if (usuarioAux == null && usuario != null){
             String sql = "INSERT INTO usuarios(idRol, nombreUsuario,"
                     + "claveIngreso, estado)"
@@ -67,10 +69,36 @@ public class UsuarioDAO {
         return bandera;
     }
     
-    public Usuario consultausuario(Usuario usuario) {
+    public Usuario consultaUsuario(Usuario usuario) {
         Usuario usuarioRetorno = null;
         String sql = "SELECT * FROM usuarios WHERE idusuario = '" 
                 + usuario.getIdUsuario()+"'";
+        
+        if(conexionExitosa == false)
+            conectarBase();
+        try {
+            rs = stmt.executeQuery(sql);
+            if(rs.next()){
+                usuarioRetorno = new Usuario();
+                usuarioRetorno.setIdUsuario(rs.getInt("idUsuario"));
+                usuarioRetorno.setIdRol(rs.getInt("idRol"));
+                usuarioRetorno.setNombreUsuario(rs.getString("nombreUsuario"));
+                usuarioRetorno.setClaveIngreso(rs.getString("claveIngreso"));
+                usuarioRetorno.setEstado(rs.getByte("estado"));
+            }
+        } catch (SQLException ex) {
+            //JOptionPane.showMessageDialog(null, "Error de MUDB 3: " + ex);
+            System.out.println("Error de BD en MUser consulta: " + ex);
+        }
+         return usuarioRetorno;
+    }
+    
+    public Usuario validaUsuario(Usuario usuario) {
+        Usuario usuarioRetorno = null;
+        String sql = "SELECT * FROM usuarios WHERE nombreUsuario = '" 
+                + usuario.getNombreUsuario() + "'"
+                + "AND claveIngreso = '"
+                + usuario.getClaveIngreso() + "'";
         
         if(conexionExitosa == false)
             conectarBase();
@@ -113,7 +141,30 @@ public class UsuarioDAO {
         return bandera;
     }
     
-        public static void main(String[] args) {
+    public List<Usuario> listaUsuarios(byte estado) {
+        List<Usuario> lista= new ArrayList<>();
+        Usuario usuario = new Usuario();
+        conectarBase();
+        try {
+            rs = stmt.executeQuery("SELECT * FROM `usuarios` WHERE estado = '" 
+                    + estado + "'");
+            while (rs.next()){
+              usuario = new Usuario();
+                usuario.setIdUsuario(rs.getInt("idUsuario"));
+                usuario.setIdRol(rs.getInt("idRol"));
+                usuario.setNombreUsuario(rs.getString("nombreUsuario"));
+                usuario.setClaveIngreso(rs.getString("claveIngreso"));
+                usuario.setEstado(rs.getByte("estado"));
+		lista.add(usuario);
+            }
+        } catch (SQLException ex) {
+            //JOptionPane.showMessageDialog(null, "Error BD 3: " + ex);
+            System.out.println("Error de BD en MUser lista: " + ex);
+        }
+        return lista;
+    }
+
+    public static void main(String[] args) {
         Usuario usuario = new Usuario();
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         usuario.setIdUsuario(1);
@@ -122,7 +173,8 @@ public class UsuarioDAO {
         usuario.setClaveIngreso("123456");
         usuario.habilitar();
         
-        System.out.println(usuarioDAO.consultausuario(usuario).getNombreUsuario());
+       // System.out.println(usuarioDAO.consultausuario(usuario).getNombreUsuario());
+        //usuarioDAO.listaUsuarios((byte)1).forEach((user) -> System.out.println(user.getNombreUsuario()));
         //materialDAO.actualizar(material);
         //usuarioDAO.altausuario(usuario);
     }

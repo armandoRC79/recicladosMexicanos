@@ -1,5 +1,6 @@
 package vista;
 
+import basedatos.UsuarioDAO;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -8,8 +9,9 @@ import javax.swing.JPanel;
 import modelo.Usuario;
 
 public class ValidarUsuario extends javax.swing.JFrame {
-    FondoPanel fondo;
-    Usuario usuario;
+    private FondoPanel fondo;
+    private Usuario usuario;
+    private UsuarioDAO usuarioDAO;
     
     public ValidarUsuario() {
         fondo = new FondoPanel();
@@ -194,13 +196,23 @@ public class ValidarUsuario extends javax.swing.JFrame {
 
     private void btnIngresarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarLoginActionPerformed
         this.usuario = new Usuario();
-        this.usuario.setIdRol(1);
-        this.usuario.setNombreUsuario("User");
-        MenuPrincipalSistema menuSistema = new MenuPrincipalSistema(this.usuario);
-        JOptionPane.showMessageDialog(null, "Bienvenido al sistema\n"
+        usuarioDAO = new UsuarioDAO();
+        String nombreUsuario = txtUsuarioLogin.getText();
+        String clave = txtClaveIngresoLogin.getText();
+        this.usuario.setNombreUsuario(nombreUsuario);
+        this.usuario.setClaveIngreso(clave);
+        
+        this.usuario = usuarioDAO.validaUsuario(usuario);
+        if(usuario != null){
+            MenuPrincipalSistema menuSistema = new MenuPrincipalSistema(this.usuario);
+            JOptionPane.showMessageDialog(null, "Bienvenido al sistema\n"
                                 + usuario.getNombreUsuario());
-        menuSistema.setVisible(true);
-        this.hide();
+            menuSistema.setVisible(true);
+            this.hide();
+        }else{
+            JOptionPane.showMessageDialog(null, "Verifique su usuario "
+                    + "o clave por favor");
+        }
     }//GEN-LAST:event_btnIngresarLoginActionPerformed
 
     /**

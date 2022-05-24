@@ -1,6 +1,7 @@
 package controlador;
 
 import basedatos.UsuarioDAO;
+import java.util.List;
 import modelo.Usuario;
 
 public class GestionUsuario {
@@ -13,13 +14,14 @@ public class GestionUsuario {
    
     public boolean alta(Usuario usuario) {
         boolean bandera = false;
-        bandera = this.usuarioDAO.altausuario(usuario);
+        usuario.habilitar();
+        bandera = this.usuarioDAO.altaUsuario(usuario);
         return bandera;
     }
     
     public boolean modificar(Usuario usuario) {
         boolean bandera = false;
-        bandera = this.usuarioDAO.altausuario(usuario);
+        bandera = this.usuarioDAO.altaUsuario(usuario);
         return bandera;
     }
     
@@ -30,4 +32,11 @@ public class GestionUsuario {
         return bandera;
     }
     
+    public List<Usuario> listaUsuariosActivos() {
+        return this.usuarioDAO.listaUsuarios((byte)1);
+    }
+    
+    public Usuario ValidaUsuario(Usuario usuario){
+        return usuarioDAO.consultaUsuario(usuario);
+    }
 }

@@ -4,24 +4,24 @@ import controlador.GestionRol;
 import controlador.GestionUsuario;
 import java.awt.Color;
 import java.util.List;
+import javax.swing.JOptionPane;
 import modelo.Rol;
+import modelo.Usuario;
 
 public class AltaUsuario extends javax.swing.JPanel {
-    FondoPanel fondo = new FondoPanel();
-    GestionUsuario gestionUsuario = new GestionUsuario();
+    private FondoPanel fondo = new FondoPanel();
     private GestionRol gestionRol = new GestionRol();
-    private List<Rol> lista;
+    private List<Rol> listaRoles;
     private Rol rol;
     
     public AltaUsuario() {
         initComponents();
-        this.rol = new Rol();
-        idRoles();
+        cargarRoles();
     }
     
-    private void idRoles() {
-        this.lista = gestionRol.lista();
-        this.lista.stream().forEach(rol 
+    private void cargarRoles() {
+        this.listaRoles = gestionRol.lista();
+        this.listaRoles.stream().forEach(rol 
                 -> cbxRolUsuarioAlta.addItem(rol.getNombre()));
     }
 
@@ -162,9 +162,42 @@ public class AltaUsuario extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarAltaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarAltaUsuarioActionPerformed
-
+        if(compruebaClaves()){
+            GestionUsuario gestionUsuario = new GestionUsuario();
+            Usuario usuario = new Usuario();
+            usuario.setNombreUsuario(txtNombreUsuarioAlta.getText());
+            usuario.setClaveIngreso(txtClaveAccesoUsuarioAlta.getText());
+            usuario.setIdRol(idRol());
+            //Byte.toUnsignedInt(b); regresar a entero
+            if(gestionUsuario.alta(usuario) == true){
+                JOptionPane.showMessageDialog(null, "El Usuario" 
+                        + usuario.getNombreUsuario()
+                        + " fue registrado");
+                limpiarCampos();
+            }else{
+                JOptionPane.showMessageDialog(null, "Usuario no registrado"
+                        + "verifica tus datos");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Verifica que ambas claves coincidan");
+        }
     }//GEN-LAST:event_btnRegistrarAltaUsuarioActionPerformed
-
+    
+    private boolean compruebaClaves(){
+        return txtClaveAccesoUsuarioAlta.getText()
+                .equals(txtConfirmaClaveAccesoUsuarioAlta.getText());
+    }
+    
+    private int idRol() {
+        int i =cbxRolUsuarioAlta.getSelectedIndex();
+        return listaRoles.get(i).getIdRol();
+    }
+    
+    private void limpiarCampos() {
+        txtClaveAccesoUsuarioAlta.setText(null);
+        txtConfirmaClaveAccesoUsuarioAlta.setText(null);
+        txtNombreUsuarioAlta.setText(null);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrarAltaUsuario;

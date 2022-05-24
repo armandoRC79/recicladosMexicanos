@@ -112,7 +112,7 @@ public class RolDAO {
         return bandera;
     }
     
-    public boolean eliminar(Rol rol) {
+   /* public boolean eliminar(Rol rol) {
         boolean bandera = false;
         String sql = "UPDATE roles SET "
                 + "nombre = '" + rol.getNombre()
@@ -131,7 +131,7 @@ public class RolDAO {
             System.out.println("Error de BD en MRol eliminar: " + ex);
         }
         return bandera;
-    }
+    }*/
     
     public List<Rol> listaRoles() {
         List<Rol> lista= new ArrayList<>();
